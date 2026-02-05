@@ -1,24 +1,4 @@
-var Promise = require('bluebird')
-// var config = require('config')
-var aws = require('aws-sdk')
-aws.config.setPromisesDependency(require('bluebird'))
-var sns = new aws.SNS({region: 'us-east-1'})
-var _ = require('underscore')
-
-module.exports = config => {
-  console.log('SEND NOTIFICATIONS')
-  console.log(config)
-  if (_.contains(['test','prod'],process.env.ZAPIT_DB)) {
-    return sns.publish({
-      TopicArn: 'arn:aws:sns:us-east-1:888328543067:send_notifications_' + process.env.ZAPIT_DB,
-      Message: JSON.stringify(config)
-    })
-    .promise()
-  }
-  else {
-    return Promise.resolve()
-  }
-}
+module.exports = require("./dist").default;
 
 // module.exports = (notification, transactions) => {
 //   if (notification.email) {

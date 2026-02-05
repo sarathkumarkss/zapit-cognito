@@ -2,15 +2,22 @@
   "name": "@zapitmedical/send_notifications",
   "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
+    "build": "tsc -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "bluebird": "^3.5.5",
-    "underscore": "^1.9.1"
+  "engines": {
+    "node": ">=22.0.0"
   },
-  "devDependencies": {}
+  "dependencies": {
+    "@aws-sdk/client-sns": "^3.983.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.0",
+    "typescript": "^5.9.3"
+  }
 }

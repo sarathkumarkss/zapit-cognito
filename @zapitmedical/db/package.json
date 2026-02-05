@@ -1,0 +1,24 @@
+{
+  "name": "@zapitmedical/db",
+  "version": "1.0.61",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zapitmedical/send_notifications": "^1.0.1",
+    "bluebird": "^3.7.2",
+    "glob": "^7.1.6",
+    "lambda": "^0.10.3",
+    "moment-timezone": "^0.5.27",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.3",
+    "underscore": "^1.9.2",
+    "walk": "^2.3.14",
+    "yaml": "^1.7.2",
+    "yamljs": "^0.3.0"
+  }
+}

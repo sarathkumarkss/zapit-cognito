@@ -1,0 +1,17 @@
+extends ../../template.pug
+block content
+  tr
+    td Facility
+    td Machine
+    td Test run date
+    td Created By
+    td Test
+    td File
+  each t in transactions
+    tr
+      td= t.test_run.machine.facility.name
+      td= t.test_run.machine.name
+      td= moment(t.test_run.test_date).format('M/D/YYYY h:mma')
+      td= t.user_created ? t.user_created.name() : ((t.note && t.note.user_created) ? t.not.user_created.name() : (t.file && t.file.user_created ? t.file.user_created.name() : ''))
+      td= (t.test_run.setup && t.test_run.setup.alias) ? t.test_run.setup.alias : t.test_run.test_version.label
+      td= t.file ? t.file.filename : ''

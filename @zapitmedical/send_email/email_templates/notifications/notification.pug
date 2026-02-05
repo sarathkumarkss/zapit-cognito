@@ -1,0 +1,126 @@
+extends template.pug
+block content
+  case notification_type
+    when 'email'
+      case template_name
+        when 'testrun_completed'
+          | The following test runs were recently completed:
+          each t in transactions
+            p
+              p Facility: #{t.facility_name}
+              p Machine: #{t.machine_name}
+              p Test: #{t.test_label}
+              p User: #{t.user_name} (#{t.user_id})
+              p Status: #{t.status}
+        when 'testrun_completed_failed'
+          | The following test runs were recently completed but failed:
+          each t in transactions
+            p
+              p Facility: #{t.facility_name}
+              p Machine: #{t.machine_name}
+              p Test: #{t.test_label}
+              p User: #{t.user_name} (#{t.user_id})
+              p Status: #{t.status}
+        when 'testrun_approved'
+          | The following test runs were recently approved:
+          each t in transactions
+            p
+              p Facility: #{t.facility_name}
+              p Machine: #{t.machine_name}
+              p Test: #{t.test_label}
+              p User: #{t.approved_by_name} (#{t.approve_user})
+              p Status: #{t.status}
+        when 'testrun_signedoff'
+          | The following test runs were recently signed-off:
+          each t in transactions
+            p
+              p Facility: #{t.facility_name}
+              p Machine: #{t.machine_name}
+              p Test: #{t.test_label}
+              p User: #{t.signedoff_by_name} (#{t.signoff_user})
+              p Status: #{t.status}
+        when 'testrun_rejected'
+          | The following test runs were recently rejected:
+          each t in transactions
+            p
+              p Facility: #{t.facility_name}
+              p Machine: #{t.machine_name}
+              p Test: #{t.test_label}
+              p User: #{t.rejected_by_name} (#{t.rejected_user})
+              p Status: #{t.status}
+        when 'testrun_note_created'
+          | The following test run note was recently created:
+          each t in transactions
+            p
+              p Facility: #{t.facility_name}
+              p Machine: #{t.machine_name}
+              p Test: #{t.test_label}
+              p Note: #{t.content}
+        when 'testrun_edit'
+          | The following tests were recently edited:
+          each t in transactions
+            p
+              p Facility: #{t.facility_name}
+              p Machine: #{t.machine_name}
+              p Test: #{t.test_label}
+              p Testrun updated at: #{t.updated_at}
+              p Testrun update by: #{t.updated_by}
+        when 'testrun_due'
+          | The following tests are due:
+          each t in transactions
+            p
+              p Facility: #{t.facility_name}
+              p Machine: #{t.machine_name}
+              p Test: #{t.test_label}
+              div(style="height: 1px; border-top: 1px solid black; width: 100%")
+        when 'testrun_overdue'
+          | The following tests are overdue:
+          each t in transactions
+            p
+              p Facility: #{t.facility_name}
+              p Machine: #{t.machine_name}
+              p Test: #{t.test_label}
+              div(style="height: 1px; border-top: 1px solid black; width: 100%")
+              //- p Previous submissions from:
+              //-   each items, email in t.machine_test_last_login
+              //-     p(style="margin-left: 10px") #{email} - last login: #{items.length > 0 ? items[0].created_at : 'Never'}
+        when 'zap2it_question_asked'
+          | The following Zap2It question was asked:
+          each t in transactions
+            p Title: #{t.title}
+            p Content: #{t.content}
+            p User: #{t.user_name} (#{t.user_id})
+        when 'zap2it_answer_posted'
+          | The following Zap2It answer was posted:
+          each t in transactions
+            p Question title: #{t.question_title}
+            p Question content: #{t.question_content}
+            p Answer:
+            p #{t.answers[0].content}
+            p User: #{t.user_name} (#{t.user_id})
+        when 'machinelog_item_note_created'
+          each t in transactions
+            p
+              p Facility: #{t.facility_name}
+              p Machine: #{t.machine_name}
+              p Note: #{t.content}
+              p Created By: #{t.created_by}
+              p Created At: #{t.created_at}
+            hr
+        when 'machinelog_item'
+          each t in transactions
+            p
+              p Facility: #{t.facility_name}
+              p Machine: #{t.machine_name}
+              p Title: #{t.title}
+              if (typeof t.notes !== 'undefined')
+                p Notes:
+                each n in t.notes
+                  p &nbsp;&nbsp;&nbsp;#{n.content}
+              p Created: #{t.created_at} by #{t.created_by || t.user_email}
+              p #{t.files ? t.files.length : 0} uploaded files
+            hr
+        default
+          | error
+    default
+      p not found

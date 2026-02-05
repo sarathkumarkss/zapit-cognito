@@ -1,0 +1,17 @@
+extends ../../template.pug
+block content
+  tr
+    td Facility
+    td Machine
+    td Title
+    td Category
+    td Created By
+    td Note
+  each t in transactions
+    tr
+      td= t.machine_log.machine.facility.name
+      td= t.machine_log.machine.name
+      td= t.machine_log.title
+      td= t.machine_log.category.label
+      td= t.user_created.name()
+      td= t.note ? t.note.content : ''

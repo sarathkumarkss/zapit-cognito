@@ -1,0 +1,22 @@
+{
+  "name": "zapit-cognito",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@zapitmedical/db": "file:@zapitmedical/db",
+    "@zapitmedical/send_email": "file:@zapitmedical/send_email",
+    "@zapitmedical/send_notifications": "file:@zapitmedical/send_notifications",
+    "@zapitmedical/templates": "file:@zapitmedical/templates",
+    "aws-sdk": "^2.1692.0",
+    "bluebird": "^3.7.2",
+    "moment-timezone": "^0.6.0",
+    "pug": "^3.0.3",
+    "underscore": "^1.13.7"
+  }
+}

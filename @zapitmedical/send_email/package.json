@@ -1,0 +1,16 @@
+{
+  "name": "@zapitmedical/send_email",
+  "version": "1.0.12",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.5",
+    "moment-timezone": "^0.5.26",
+    "pug": "^2.0.4"
+  }
+}

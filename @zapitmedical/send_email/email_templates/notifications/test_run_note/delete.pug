@@ -1,0 +1,17 @@
+extends ../../template.pug
+block content
+  tr
+    td Facility
+    td Machine
+    td Test run date
+    td Deleted By
+    td Test
+    td Note
+  each t in transactions
+    tr
+      td= t.test_run.machine.facility.name
+      td= t.test_run.machine.name
+      td= moment(t.test_run.test_date).format('M/D/YYYY h:mma')
+      td= t.user_deleted ? t.user_deleted.name() : ((t.note && t.note.user_deleted) ? t.not.user_deleted.name() : (t.file && t.file.user_deleted ? t.file.user_deleted.name() : ''))
+      td= (t.test_run.setup && t.test_run.setup.alias) ? t.test_run.setup.alias : t.test_run.test_version.label
+      td= t.note ? t.note.content : ''

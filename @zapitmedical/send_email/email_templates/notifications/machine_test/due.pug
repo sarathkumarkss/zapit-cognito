@@ -1,0 +1,13 @@
+extends ../../template.pug
+block content
+  tr
+    td Facility
+    td Machine
+    td Test
+    td Status
+  each t in transactions
+    tr
+      td #{t.facility_name}
+      td #{t.machine_name}
+      td #{t.label}
+      td #{(t.is_timely === 1 && t.status === 'ready') ? 'Due' : 'Not Due'}

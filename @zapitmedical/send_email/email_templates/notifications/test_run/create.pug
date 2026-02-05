@@ -1,0 +1,19 @@
+extends ../../template.pug
+block content
+  tr
+    td Facility
+    td Machine
+    td Test
+    td Created By
+    td Status
+    td Notes
+  each t in transactions
+    tr
+      td #{t.machine.facility.name}
+      td #{t.machine.name}
+      td #{(t.setup && t.setup.alias) ? t.setup.alias : t.test_version.label}
+      td #{t.user_created.firstname + ' ' + t.user_created.lastname}
+      td #{t.status}
+      td
+        each n in t.notes
+          div #{n.note.content}

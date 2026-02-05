@@ -1,0 +1,11 @@
+extends ../../template.pug
+block content
+  tr
+    td Facility
+    td Machine
+    td Title
+  each t in transactions
+    tr
+      td #{t.machine.facility.name}
+      td #{t.machine.name}
+      td #{t.title}
